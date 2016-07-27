@@ -1,6 +1,7 @@
 plugins {
 	id "java"
 	id "idea"
+	id "maven"
 }
 
 repositories {
@@ -9,4 +10,14 @@ repositories {
 
 dependencies {
 	testCompile group: "junit", name: "junit", version: "4.12"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = "sources"
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives jar
+	archives sourcesJar
 }
