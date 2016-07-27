@@ -36,7 +36,9 @@ public class MethodStreamTest {
 		Object[] array = Mirror.of(Test.class)
 				.methods()
 				.filterDeclaringClass(Test.class)
-				.invokeToArray(null);
+				.invoke(null)
+				.sorted()
+				.toArray();
 		assertArrayEquals(array, new String[]{"Hello", "World"});
 	}
 
@@ -69,7 +71,9 @@ public class MethodStreamTest {
 				.methods()
 				.filterDeclaringClass(Test.class)
 				.isStatic()
-				.invokeToArray(null);
+				.invoke(null)
+				.sorted()
+				.toArray();
 		assertArrayEquals(array, new String[]{"Hello", "World"});
 	}
 
@@ -80,7 +84,7 @@ public class MethodStreamTest {
 				.filterDeclaringClass(Test2.class)
 				.isNotStatic()
 				.invokeToArray(new Test2());
-		assertEquals(array[0], "Test 3");
+		assertArrayEquals(array, new String[]{"Test 3"});
 	}
 
 	@org.junit.Test
@@ -89,7 +93,9 @@ public class MethodStreamTest {
 				.methods()
 				.filterDeclaringClass(Test.class)
 				.isPublic()
-				.invokeToArray(null);
+				.invoke(null)
+				.sorted()
+				.toArray();
 		assertArrayEquals(array, new String[]{"Hello", "World"});
 	}
 
