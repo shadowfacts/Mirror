@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -36,9 +37,7 @@ public class MethodStreamTest {
 				.methods()
 				.filterDeclaringClass(Test.class)
 				.invokeToArray(null);
-		assertEquals(array.length, 2);
-		assertEquals(array[0], "Hello");
-		assertEquals(array[1], "World");
+		assertArrayEquals(array, new String[]{"Hello", "World"});
 	}
 
 	@org.junit.Test
@@ -71,8 +70,7 @@ public class MethodStreamTest {
 				.filterDeclaringClass(Test.class)
 				.isStatic()
 				.invokeToArray(null);
-		assertEquals(array[0], "Hello");
-		assertEquals(array[1], "World");
+		assertArrayEquals(array, new String[]{"Hello", "World"});
 	}
 
 	@org.junit.Test
@@ -92,8 +90,7 @@ public class MethodStreamTest {
 				.filterDeclaringClass(Test.class)
 				.isPublic()
 				.invokeToArray(null);
-		assertEquals(array[0], "Hello");
-		assertEquals(array[1], "World");
+		assertArrayEquals(array, new String[]{"Hello", "World"});
 	}
 
 	@org.junit.Test
