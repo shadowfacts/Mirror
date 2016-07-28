@@ -75,6 +75,15 @@ public class FieldStream implements Stream<MirrorField> {
 	}
 
 	/**
+	 * Sets each field in this stream to the given value for the given instance
+	 * @param instance The instance for which to set the fields
+	 * @param value The new value of the fields
+	 */
+	public void set(Object instance, Object value) {
+		forEach(f -> f.set(instance, value));
+	}
+
+	/**
 	 * Filter this stream by if the field has the given annotation
 	 * @param clazz The annotation class
 	 * @return The filtered stream

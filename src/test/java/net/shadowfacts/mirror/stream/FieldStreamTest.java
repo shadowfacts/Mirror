@@ -37,6 +37,15 @@ public class FieldStreamTest {
 	}
 
 	@org.junit.Test
+	public void testSet() throws ReflectiveOperationException {
+		Mirror.of(Test4.class)
+				.fields()
+				.set(null, "test 2");
+		assertEquals(Test4.class.getField("s").get(null), "test 2");
+		assertEquals(Test4.class.getField("s2").get(null), "test 2");
+	}
+
+	@org.junit.Test
 	public void testHasAnnotation() {
 		Optional<Object> optional = Mirror.of(Test.class)
 				.fields()
@@ -162,6 +171,11 @@ public class FieldStreamTest {
 	public static class Test3 {
 		protected static String s4 = "Test 4";
 		private static String s5 = "Test 5";
+	}
+
+	public static class Test4 {
+		public static String s = "Hello";
+		public static String s2 = "World";
 	}
 
 	@Retention(RetentionPolicy.RUNTIME)

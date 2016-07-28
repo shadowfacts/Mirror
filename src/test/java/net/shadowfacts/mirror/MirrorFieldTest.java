@@ -43,6 +43,14 @@ public class MirrorFieldTest {
 	}
 
 	@Test
+	public void testSet() {
+		Optional<MirrorField> optional = Mirror.of(Test4.class).field("f");
+		assertTrue(optional.isPresent());
+		optional.get().set(null, "test 2");
+		assertEquals(optional.get().get(null), "test 2");
+	}
+
+	@Test
 	public void testIsStatic() {
 		Optional<MirrorField> optional = Mirror.of(Test1.class).field("f");
 		assertTrue(optional.isPresent());
@@ -123,6 +131,10 @@ public class MirrorFieldTest {
 
 	public static class Test3 {
 		private String f2 = "test 2";
+	}
+
+	public static class Test4 {
+		public static String f = "test";
 	}
 
 	@Retention(RetentionPolicy.RUNTIME)

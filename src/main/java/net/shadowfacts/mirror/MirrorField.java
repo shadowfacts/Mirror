@@ -56,6 +56,19 @@ public class MirrorField {
 	}
 
 	/**
+	 * Sets the value of this field on the given instance
+	 * @param instance The instance for which to set the field
+	 * @param value The new value of the field
+	 */
+	public void set(Object instance, Object value) {
+		try {
+			field.set(instance, value);
+		} catch (ReflectiveOperationException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
 	 * @return The Java {@link Field}
 	 */
 	public Field unwrap() {
