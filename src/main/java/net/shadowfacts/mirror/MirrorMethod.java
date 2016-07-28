@@ -67,12 +67,7 @@ public class MirrorMethod {
 	 * @return The types of the parameters that this method accepts
 	 */
 	public MirrorClass<?>[] parameterTypes() {
-		Class<?>[] types = method.getParameterTypes();
-		MirrorClass<?>[] mirrors = new MirrorClass<?>[types.length];
-		for (int i = 0; i < types.length; i++) {
-			mirrors[i] = Mirror.of(types[i]);
-		}
-		return mirrors;
+		return Mirror.ofAllUnwrapped(method.getParameterTypes()).toArray(MirrorClass<?>[]::new);
 	}
 
 	/**
