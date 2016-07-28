@@ -2,6 +2,7 @@ package net.shadowfacts.mirror;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 /**
  * A mirror constructor
@@ -29,12 +30,7 @@ public class MirrorConstructor<T> {
 	 * @return An array of the types this constructor accepts
 	 */
 	public MirrorClass<?>[] parameterTypes() {
-		Class<?>[] types = constructor.getParameterTypes();
-		MirrorClass<?>[] mirrors = new MirrorClass<?>[types.length];
-		for (int i = 0; i < types.length; i++) {
-			mirrors[i] = Mirror.of(types[i]);
-		}
-		return mirrors;
+		return Mirror.ofAllUnwrapped(constructor.getParameterTypes()).toArray(MirrorClass<?>[]::new);
 	}
 
 	/**
