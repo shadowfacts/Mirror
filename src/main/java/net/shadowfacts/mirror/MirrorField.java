@@ -18,6 +18,13 @@ public class MirrorField {
 	}
 
 	/**
+	 * @return The Java {@link Field}
+	 */
+	public Field unwrap() {
+		return field;
+	}
+
+	/**
 	 * @return The name of the field
 	 */
 	public String name() {
@@ -69,10 +76,10 @@ public class MirrorField {
 	}
 
 	/**
-	 * @return The Java {@link Field}
+	 * @return The type of this field
 	 */
-	public Field unwrap() {
-		return field;
+	public MirrorClass<?> type() {
+		return Mirror.of(field.getType());
 	}
 
 	/**

@@ -71,6 +71,13 @@ public class MirrorMethod {
 	}
 
 	/**
+	 * @return The return type of the method
+	 */
+	public MirrorClass<?> returnType() {
+		return Mirror.of(method.getReturnType());
+	}
+
+	/**
 	 * @return The modifiers of this method
 	 */
 	public int modifiers() {
