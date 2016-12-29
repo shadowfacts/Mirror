@@ -249,17 +249,13 @@ public class MirrorClass<T> {
 	 * @return The method
 	 */
 	public Optional<MirrorMethod> declaredMethod(String[] names, Class<?>... args) {
-		return declaredMethods()
-				.filter(m -> Arrays.equals(args, m.parameterTypes()))
-				.filter(f -> {
-					for (String s : names) {
-						if (f.name().equals(s)) {
-							return true;
-						}
-					}
-					return false;
-				})
-				.findFirst();
+		for (String s : names) {
+			try {
+				Method m = clazz.getDeclaredMethod(s, args);
+				return Optional.of(Mirror.of(m));
+			} catch (NoSuchMethodException ignored) {}
+		}
+		return Optional.empty();
 	}
 
 	/**
